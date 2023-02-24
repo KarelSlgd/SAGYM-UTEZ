@@ -9,7 +9,6 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.sql.SQLException;
 import java.util.List;
-import java.util.Optional;
 
 @Service
 @Transactional
@@ -46,21 +45,9 @@ public class RutinaService {
 
     @Transactional(rollbackFor = {SQLException.class})
     public Response<Rutina> update(Rutina category) {
-        if (this.repository.existsById(category.getId())) {
+        if (this.repository.existsById(category.getId_rutina())) {
             return new Response<>(
                     this.repository.saveAndFlush(category), false, 200, "Rutina actualizada correctamente"
-            );
-        }
-        return new Response<>(
-                null, true, 400, "No se encontro la rutina"
-        );
-    }
-
-    @Transactional(rollbackFor = {SQLException.class})
-    public Response<Boolean> delete(Long id) {
-        if (this.repository.existsById(id)) {
-            return new Response<>(
-                    this.repository.updateStatusById(false, id), false, 200, "Rutina eliminada correctamente"
             );
         }
         return new Response<>(

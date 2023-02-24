@@ -35,6 +35,14 @@ public class EjercicioController {
     ) {
         return new ResponseEntity<>(this.service.getOne(id), HttpStatus.OK);
     }
+
+    /*
+    {
+        "nombre": "Mancuernas",
+        "descripcion": "Utilizar pesas",
+        "activo": true
+    }
+     */
     @PostMapping("/")
     public ResponseEntity<Response<Ejercicio>> insert(@RequestBody Ejercicio ejercicio) {
         return new ResponseEntity<>(
@@ -42,18 +50,20 @@ public class EjercicioController {
         );
     }
 
+    /*
+    {
+        "id_ejercicio": 3,
+        "nombre": "Mancuernas",
+        "descripcion": "Primero realizar repeticiones con un brazo y luego con el otro",
+        "activo": true
+    }
+     */
     @PutMapping("/")
     public ResponseEntity<Response<Ejercicio>> update(@RequestBody Ejercicio ejercicio) {
         return new ResponseEntity<>(
                 this.service.update(ejercicio), HttpStatus.OK
         );
     }
-/*
-    @DeleteMapping("/{id}")
-    public ResponseEntity<Response<Boolean>> delete(@PathVariable("id") Long id) {
-        return new ResponseEntity<>(
-                this.service.delete(id), HttpStatus.OK
-        );
-    }
-*/
+
+
 }

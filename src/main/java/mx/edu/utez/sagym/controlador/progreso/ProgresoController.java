@@ -1,7 +1,8 @@
-package mx.edu.utez.sagym.controlador.adjunto;
+package mx.edu.utez.sagym.controlador.progreso;
 
-import mx.edu.utez.sagym.modelo.adjunto.Adjunto;
-import mx.edu.utez.sagym.servicios.adjuntos.AdjuntoService;
+import mx.edu.utez.sagym.modelo.ejercicio_asignado.EjercicioAsignado;
+import mx.edu.utez.sagym.modelo.progreso.Progreso;
+import mx.edu.utez.sagym.servicios.progreso.ProgresoService;
 import mx.edu.utez.sagym.utiles.Response;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -11,39 +12,36 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/adjunto")
+@RequestMapping("/api/progreso")
 @CrossOrigin(origins = {"*"})
-public class AdjuntoController {
+public class ProgresoController {
     @Autowired
-    private AdjuntoService service;
-
-    //http://localhost:8080/api/adjunto/
+    private ProgresoService service;
 
     @GetMapping("/")
-    public ResponseEntity<Response<List<Adjunto>>> getAll() {
+    public ResponseEntity<Response<List<Progreso>>> getAll() {
         return new ResponseEntity<>(
                 this.service.getAll(), HttpStatus.OK
         );
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Response<Adjunto>> getOne(
+    public ResponseEntity<Response<Progreso>> getOne(
             @PathVariable("id") Long id
     ) {
         return new ResponseEntity<>(this.service.getOne(id), HttpStatus.OK);
     }
-
     @PostMapping("/")
-    public ResponseEntity<Response<Adjunto>> insert(@RequestBody Adjunto adjunto) {
+    public ResponseEntity<Response<Progreso>> insert(@RequestBody Progreso progreso) {
         return new ResponseEntity<>(
-                this.service.insert(adjunto), HttpStatus.CREATED
+                this.service.insert(progreso), HttpStatus.CREATED
         );
     }
 
     @PutMapping("/")
-    public ResponseEntity<Response<Adjunto>> update(@RequestBody Adjunto adjunto) {
+    public ResponseEntity<Response<Progreso>> update(@RequestBody Progreso progreso) {
         return new ResponseEntity<>(
-                this.service.update(adjunto), HttpStatus.OK
+                this.service.update(progreso), HttpStatus.OK
         );
     }
 }

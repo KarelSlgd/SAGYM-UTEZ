@@ -16,11 +16,11 @@ import javax.persistence.*;
 public class Rol {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private Long id_rol;
 
     @Column(nullable = false, length = 100)
     private String nombre_rol;
 
-    @Column(nullable = false, columnDefinition = "TINYINT DEFAULT 1")
+    @Column(nullable = false,columnDefinition = "TINYINT DEFAULT 1")
     private Boolean activo;
 }
