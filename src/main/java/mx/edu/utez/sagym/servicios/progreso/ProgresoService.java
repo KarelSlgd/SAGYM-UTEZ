@@ -1,7 +1,6 @@
-package mx.edu.utez.sagym.servicios.usuario;
-
-import mx.edu.utez.sagym.modelo.usuario.Usuario;
-import mx.edu.utez.sagym.modelo.usuario.UsuarioRepository;
+package mx.edu.utez.sagym.servicios.progreso;
+import mx.edu.utez.sagym.modelo.progreso.Progreso;
+import mx.edu.utez.sagym.modelo.progreso.ProgresoRepository;
 import mx.edu.utez.sagym.utiles.Response;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -12,19 +11,19 @@ import java.util.List;
 
 @Service
 @Transactional
-public class UsuarioService {
+public class ProgresoService {
     @Autowired
-    private UsuarioRepository repository;
+    private ProgresoRepository repository;
 
     @Transactional(readOnly = true)
-    public Response<List<Usuario>> getAll(){
+    public Response<List<Progreso>> getAll(){
         return new Response<>(
                 this.repository.findAll(), false, 200, "Correcto"
         );
     }
 
     @Transactional(readOnly= true)
-    public Response<Usuario> getOne(Long id) {
+    public Response<Progreso> getOne(Long id) {
         if(this.repository.existsById(id)){
             return new Response<>(
                     this.repository.findById(id).get(), false,200, "Correcto"
@@ -37,17 +36,17 @@ public class UsuarioService {
     }
 
     @Transactional(rollbackFor = {SQLException.class})
-    public Response<Usuario> insert(Usuario usuario){
+    public Response<Progreso> insert(Progreso progreso){
         return new Response<>(
-                this.repository.saveAndFlush(usuario), false,200,"Usuario registrado correctamente"
+                this.repository.saveAndFlush(progreso), false,200,"Usuario registrado correctamente"
         );
     }
 
     @Transactional(rollbackFor = {SQLException.class})
-    public Response<Usuario> update(Usuario usuario){
-        if(this.repository.existsById(usuario.getId_usuario())){
+    public Response<Progreso> update(Progreso progreso){
+        if(this.repository.existsById(progreso.getId_progreso())){
             return new Response<>(
-                    this.repository.saveAndFlush(usuario), false,200,"Usuario actualizado correctamente"
+                    this.repository.saveAndFlush(progreso), false,200,"Usuario actualizado correctamente"
             );
         }
         return new Response<>(

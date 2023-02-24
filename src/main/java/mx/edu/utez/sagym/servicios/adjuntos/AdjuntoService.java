@@ -33,23 +33,33 @@ public class AdjuntoService {
         return new Response<>(
                 null, true, 400, "No se encontro el elemento adjunto"
         );
-
     }
+
+    /*
+    {
+            "nombre_archivo": "Foto",
+            "enlace": "www.google.com",
+            "tipo_elemento": "png",
+            "activo": true,
+            "ejercicio": {
+                "id_ejercicio": 2,
+                "nombre": "Mancuernas",
+                "descripcion": "Utilizar pesas",
+                "activo": true
+            }
+    }
+     */
 
     @Transactional(rollbackFor = {SQLException.class})
     public Response<Adjunto> insert(Adjunto adjunto) {
-        if (this.repository.existsById(adjunto.getId()))
-            return new Response<>(
-                    null, true, 400, "El elemento adjunto ya fue registrado"
-            );
         return new Response<>(
-                this.repository.saveAndFlush(adjunto), false, 200, "Elemento adjunto registrado correctamente"
+                this.repository.saveAndFlush(adjunto), false,200,"Usuario registrado correctamente"
         );
     }
 
     @Transactional(rollbackFor = {SQLException.class})
     public Response<Adjunto> update(Adjunto adjunto) {
-        if (this.repository.existsById(adjunto.getId())) {
+        if (this.repository.existsById(adjunto.getId_elemento())) {
             return new Response<>(
                     this.repository.saveAndFlush(adjunto), false, 200, "Elemento adjunto actualizado correctamente"
             );
@@ -60,16 +70,6 @@ public class AdjuntoService {
     }
 
 
-    @Transactional(rollbackFor = {SQLException.class})
-    public Response<Boolean> delete(Long id) {
-        if (this.repository.existsById(id)) {
-            return new Response<>(
-                    this.repository.updateStatusById(false, id), false, 200, "Elemento adjunto eliminado correctamente"
-            );
-        }
-        return new Response<>(
-                null, true, 400, "No se encontro el elemento adjunto"
-        );
-    }
+
 
 }

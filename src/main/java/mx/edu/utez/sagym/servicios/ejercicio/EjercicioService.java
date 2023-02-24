@@ -51,7 +51,7 @@ public class EjercicioService {
 
     @Transactional(rollbackFor = {SQLException.class})
     public Response<Ejercicio> update(Ejercicio ejercicio){
-        if(this.repository.existsById(ejercicio.getId())){
+        if(this.repository.existsById(ejercicio.getId_ejercicio())){
             return new Response<>(
                     this.repository.saveAndFlush(ejercicio), false,200,"Ejercicio actualizado correctamente"
             );

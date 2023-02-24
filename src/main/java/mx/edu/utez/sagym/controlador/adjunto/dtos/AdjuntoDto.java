@@ -13,14 +13,14 @@ import mx.edu.utez.sagym.modelo.ejercicio.Ejercicio;
 @Getter
 public class AdjuntoDto {
 
-    private Long id;
+    private Long id_elemento;
     private String nombre_archivo;
     private String enlace;
+    private String tipo_elemento;
     private Boolean activo;
-
     private Ejercicio ejercicio;
 
     public Adjunto getAdjunto(){
-        return new Adjunto(getId(),getNombre_archivo(),getEnlace(),getActivo(),getEjercicio());
+        return new Adjunto(getId_elemento(),getNombre_archivo(),getEnlace(),getTipo_elemento(),getActivo(),getEjercicio());
     }
 }

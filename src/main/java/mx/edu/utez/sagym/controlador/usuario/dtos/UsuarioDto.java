@@ -12,20 +12,20 @@ import mx.edu.utez.sagym.modelo.usuario.Usuario;
 @Setter
 @Getter
 public class UsuarioDto {
-    private Long id;
+    private Long id_usuario;
     private String nombre;
     private String apellido_paterno;
     private String apellido_materno;
     private String correo;
     private String contrasena;
-    private Character telefono;
+    private String telefono;
     private Integer peso;
     private Integer altura;
     private Boolean activo;
     private Rol rol;
 
     public Usuario getUsuario(){
-        return new Usuario(getId(),getNombre(),getApellido_paterno(),getApellido_materno(),getCorreo(),getContrasena(),getTelefono(),getPeso(),getAltura(),getActivo(),getRol());
+        return new Usuario(getId_usuario(),getNombre(),getApellido_paterno(),getApellido_materno(),getCorreo(),getContrasena(),getTelefono(),getPeso(),getAltura(),getActivo(),getRol(),null,null);
     }
 
 }
