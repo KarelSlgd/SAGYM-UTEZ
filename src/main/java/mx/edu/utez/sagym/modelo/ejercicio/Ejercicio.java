@@ -5,10 +5,9 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import mx.edu.utez.sagym.modelo.rutina.Rutina;
+import mx.edu.utez.sagym.modelo.ejercicio_asignado.EjercicioAsignado;
 
 import javax.persistence.*;
-import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -20,16 +19,23 @@ import java.util.Set;
 public class Ejercicio {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private Long id_ejercicio;
 
     @Column(nullable = false, unique = true, length = 100)
     private String nombre;
+    @Column(length = 300)
+    private String descripcion;
 
-    @Column(nullable = false, columnDefinition = "TINYINT DEFAULT 1")
+    @Column(nullable = false,columnDefinition = "TINYINT DEFAULT 1")
     private Boolean activo;
-
-    @ManyToMany(mappedBy = "linkEjercicio")
+    @OneToMany(mappedBy = "ejercicio")
     @JsonIgnore
-    Set<Rutina> linkRutina;
+    private Set<EjercicioAsignado>  ejercicioAsignado;
+
+    @OneToMany(mappedBy = "rutina")
+    @JsonIgnore
+    private Set<EjercicioAsignado>  ejercicioAsignadoR;
+
+
 
 }

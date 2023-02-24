@@ -17,7 +17,7 @@ import javax.persistence.*;
 public class Adjunto {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private Long id_elemento;
 
     @Column(nullable = false, length = 100)
     private String nombre_archivo;
@@ -25,10 +25,12 @@ public class Adjunto {
     @Column(nullable = false, length = 150)
     private String enlace;
 
-    @Column(nullable = false, columnDefinition = "TINYINT DEFAULT 1")
+    @Column(nullable = false, length = 150 )
+    private String tipo_elemento;
+    @Column(nullable = false,columnDefinition = "TINYINT DEFAULT 1")
     private Boolean activo;
 
     @ManyToOne
-    @JoinColumn(name = "id_ejercicios")
+    @JoinColumn(name = "fk_ejercicios")
     private Ejercicio ejercicio;
 }
